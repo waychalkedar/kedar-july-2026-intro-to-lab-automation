@@ -12,8 +12,9 @@
 ## Exercise 1
 - measure the delay between the two digitalWrite() functions using the logic analyzer.
 Paste screenshots below:
+![delay between digitalWrite()](image.png)
 
-enter the delay in usec here:  __________
+enter the delay in usec here: 3.628 us
 
 ## write a 2nd program that does the following:
 - based on the first program, add any calculation (adding one to an additional variable for example) and store the result in a variable between the two digitalWrite() functions.
@@ -21,12 +22,14 @@ enter the delay in usec here:  __________
 ## Exercise 2
 - measure the delay the originated from the calculation between the two digitalWrite() functions using the logic analyzer.
 Paste screenshots below:
+![delay after addition](image-1.png)
 
-enter the delay in usec here:  __________
+enter the delay in usec here: 4.248 us
 
 ## Exercise 3
 - Use chatGPT or similar to find how to write simultaneously to both pins. Measure the delay between the pins now. 
 - Paste a screenshot below.
+![alt text](image-2.png)
 - Comparison of AI changes if any:
 
 ## Git

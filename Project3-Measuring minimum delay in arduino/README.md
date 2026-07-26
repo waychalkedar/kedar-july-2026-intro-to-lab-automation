@@ -30,9 +30,10 @@ run code:
 - open scopy program
 - connect to ADALM2000
 - open scopy logic analyzer
-- activate DIO0 and rising edge and run (why?)
-I think that rising edge detects the trigger when the slope is positive (above the threshold of zero). I tried using HIGH as a trigger but the signal jittered a lot more, so maybe the derivative as a trigger is more precise?
-- play with the scopy parameters until you can see the separate blinks. Which parameter(s) do you need to change?![alt text](image.png)
+- activate DIO0 and rising edge and run (why?) 
+
+_I think that rising edge detects the trigger when the slope is positive (above the threshold of zero). I tried using HIGH as a trigger but the signal jittered a lot more, so maybe the derivative as a trigger is more precise?_
+- play with the scopy parameters until you can see the separate blinks. Which parameter(s) do you need to change?
 - use cursors and sample rate to measure the pulse width
 - take screenshots and add them to the README below.
 
