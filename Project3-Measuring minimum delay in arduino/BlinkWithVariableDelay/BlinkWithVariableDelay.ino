@@ -23,20 +23,21 @@
 */
 
 int RED_LED = 4;
+int DELAY = 500;
+unsigned int DELAY_US = 1;
 
 // the setup function runs once when you press reset or power the board
 void setup() {
-  // initialize digital pin LED_BUILTIN as an output.
-  pinMode(LED_BUILTIN, OUTPUT);
+  // initialize digital pin RED_LED as an output.
   pinMode(RED_LED, OUTPUT);
 }
 
 // the loop function runs over and over again forever
 void loop() {
-  digitalWrite(LED_BUILTIN, HIGH);  // change state of the LED by setting the pin to the HIGH voltage level
-  digitalWrite(RED_LED,      LOW);
-  delay(1);                      // wait for a second
-  digitalWrite(LED_BUILTIN, LOW);   // change state of the LED by setting the pin to the LOW voltage level
-  digitalWrite(RED_LED,    HIGH);
-  delay(1);                      // wait for a second
+  digitalWrite(RED_LED, HIGH);
+  // delay(DELAY);
+  delayMicroseconds(DELAY_US);           
+  digitalWrite(RED_LED, LOW);
+  // delay(DELAY);
+  delayMicroseconds(DELAY_US);                
 }
