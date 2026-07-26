@@ -29,16 +29,18 @@ int DELAY = 1;
 
 // the setup function runs once when you press reset or power the board
 void setup() {
-  pinMode(LED_1, OUTPUT);
-  pinMode(LED_2, OUTPUT);
+  DDRB |= B00110000; // using port registers, set pins 12 and 13 as outputs
+  // we don't want to change the configuration of other pins
+  // DDRB = DDRB | B00110000, so any pin except 12 and 13 will preserve their state, since x | 0 = x for x = 0 or 1
 }
 
 // the loop function runs over and over again forever
 void loop() {
-  digitalWrite(LED_1, HIGH);
-  digitalWrite(LED_2, HIGH);
-  delay(DELAY);      
-  digitalWrite(LED_1, LOW);
-  digitalWrite(LED_2, LOW);
+  PORTB |=  B00110000;  // using port registers, turn pins 12 and 13 HIGH together
+  // SUM = SUM + 1;
+  delay(DELAY);
+  PORTB &= ~B00110000; // simultaneously turning 12 and 13 LOW together
+  // we don't want to turn OFF other pins that might be required to stay on
+  // PORTB = PORTB & B11001111, so any pin except 12 and 13 will preserve their state, since x & 1 = x for x = 0 or 1         
   delay(DELAY);             
 }

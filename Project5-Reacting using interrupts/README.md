@@ -22,10 +22,10 @@ for (int i = 0; i< 10000; i++){
 }
 ```
 - test if lighting led still works. Why or why not?
-answer here: __________
+answer here: No, LED didn't work, and debug statements indicated the code never reaching the `if` block. I think the processor executes code serially and the button press won't happen until the long for loop process ends.
 
 ## Use interrupt to light led
-- Add code to create an interrupt pin (why can't it be the button pin?). Use a variable for this.
+- Add code to create an interrupt pin (why can't it be the button pin?). Use a variable for this. Note: The interrupt pin is NOT a kill switch. You pause the process, do the check for the LED, and then resume the process.
 - Short the interrupt pin with the button pin
 - test. Does it work?
 
