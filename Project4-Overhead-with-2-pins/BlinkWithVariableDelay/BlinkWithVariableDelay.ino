@@ -31,14 +31,14 @@ int DELAY = 1;
 void setup() {
   // pinMode(LED_1, OUTPUT);
   // pinMode(LED_2, OUTPUT);
-  DDRB |= (1 << DDB4) | (1 << DDB5); // using port registers, set pins 12 and 13 as outputs
+  DDRB |= B00110000; // using port registers, set pins 12 and 13 as outputs
 }
 
 // the loop function runs over and over again forever
 void loop() {
   // digitalWrite(LED_1, HIGH);
   // digitalWrite(LED_2, HIGH);
-  PORTB |= (1 << PB4) | (1 << PB5);  // using port registers, turn pins 12 and 13 HIGH together
+  PORTB |= B00110000;  // using port registers, turn pins 12 and 13 HIGH together
   delay(DELAY);         
   digitalWrite(LED_1, LOW);
   digitalWrite(LED_2, LOW);
