@@ -58,8 +58,11 @@ I think that rising edge detects the trigger when the slope is positive (above t
 Paste screenshots below.
 Comparison of AI changes if any:
 
+1 ms pulse:
 ![1 ms signal in logic analyzer](1ms.png)
 
-![247 us signal](247us.png)
-
+Measuring the overhead with no delay statements between `digitalWrite(HIGH)` and `...(LOW)`:
 ![overhead of 3.496 us measured](overhead.png)
+
+Programmed delay of 247 us:
+![247 us signal](247us.png)
