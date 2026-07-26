@@ -21,4 +21,9 @@
  - no need to commit anything in this project
 
 ## Results
-- LED blinks when: 
+- LED blinks when: The Blink example code is uploaded correctly
+
+## Extra
+
+The red LED on the Grove kit is pin 4 for the Arduino.
+Added a `Blink_modified.ino` sketch that alternates blinking between the Arduino green LED and the Grove red LED.
