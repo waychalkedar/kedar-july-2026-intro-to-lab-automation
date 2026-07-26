@@ -58,8 +58,8 @@ I think that rising edge detects the trigger when the slope is positive (above t
 Paste screenshots below.
 Comparison of AI changes if any:
 
-![1 ms signal in logic analyzer](1 ms.png)
+![1 ms signal in logic analyzer](1ms.png)
 
-![247 us signal](247 us.png)
+![247 us signal](247us.png)
 
 ![overhead of 3.496 us measured](overhead.png)
