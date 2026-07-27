@@ -22,12 +22,19 @@ for (int i = 0; i< 10000; i++){
 }
 ```
 - test if lighting led still works. Why or why not?
-answer here: No, LED didn't work, and debug statements indicated the code never reaching the `if` block. I think the processor executes code serially and the button press won't happen until the long for loop process ends.
+answer here: The LED only works if the button was pressed in the time after the loop, and the state is maintained. This can be seen by shortening the process (1000 iterations for example) and adding a delay after the loop ends to make sure you catch when the main `loop()` repeats itself.
+
+The red LED is actually hardwired to the button, so even when you upload a blank sketch to the Arduino, the LED turns on with the button. The LED doesn't turn on when you have the long loop, so I guess when pin D6 (button) is assigned to do something in a program that takes priority(?)
 
 ## Use interrupt to light led
 - Add code to create an interrupt pin (why can't it be the button pin?). Use a variable for this. Note: The interrupt pin is NOT a kill switch. You pause the process, do the check for the LED, and then resume the process.
 - Short the interrupt pin with the button pin
 - test. Does it work?
+
+It's interesting to play around with the modes for the `attachInterrupt()` function. 
+- `CHANGE` : the button turns on and off as expected
+- `RISING` : the button turns on but stays on until the loop ends
+- `LOW`    : the rest of the code only runs as long as the button is pressed
 
 ## Exercises
  - Comparison of AI changes if any:

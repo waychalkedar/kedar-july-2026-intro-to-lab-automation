@@ -8,11 +8,16 @@
 - Do not use a delay() function here. Please use the system clock to measure the time. look for the millis() function in the Arduino reference.
 Test the code and make sure it works as expected
 paste a screen shot from the logic analyzer below:
+
+![alt text](image.png)
  
 ## update the code to add a delay in the loop function
 - Add the same for loop as in the previous exercise to simulate a long process. Does the LED still turn off after 5 seconds? Why or why not?
-answer here: __________
+answer here: No, the LED stays on. The Arduino documentation says that `millis()` does not update when placed inside an ISR, and so it makes sense that once the LED is turned on, it stays on, because there is no time increment seen by the function.
+
 add a screen shot from the logic analyzer below:
+
+![alt text](image-1.png)
 
 ## Write a second program. The proper way to solve this problem is to use a timer
 - install package mstimer2 from the library manager
@@ -24,6 +29,10 @@ add a screen shot from the logic analyzer below:
 ## Exercises
 - check that although there is delay in the loop function, the LED now turns off after 5 seconds
 
+![alt text](image-2.png)
+
 - change the LED time ON from 5 seconds to 30 ms, measure in the scope the time the LED is ON. is it 30 ms? Why or why not?
-answer here: __________
+answer here: Seems to be slightly under 30 ms.
 paste a screen shot from the scope below:
+
+![alt text](image-3.png)
