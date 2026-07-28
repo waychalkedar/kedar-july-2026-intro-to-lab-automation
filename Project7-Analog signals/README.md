@@ -59,6 +59,8 @@ Min ~ 2.75%, max = 12%. The servo starts jittering like crazy when turning the k
  - Comparison of AI changes if any:
 - commit and push both .ino files and their folders to your repository
 
+## Bonus
 
+How long does it take to execute an `analogRead()` or `analogWrite()` function? Seems to be ~105 us for `analogRead()`, ~6 us for `analogWrite()`.
 
 
