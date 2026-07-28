@@ -23,6 +23,10 @@ The purpose of this project is to dim and increase the led light using the rotar
 - what happens when using 30Hz instead of 50Hz for the PWM?
 - paste a screenshot of the oscilloscope where both the rotary potentiometer signal and the PWM signal on the led are seen.
 
+![alt text](image.png)
+
+Here, ON time ~ 0.724 ms, OFF time ~ 2.603 ms -> Duty cycle = ON/(ON+OFF) ~ 22% (can also be see in the screenshot for channel 2). Voltage recorded on the analog pin (channel 1) = 1.135 V.
+
 ## Use PWM to control a servo motor
 
 Documentation on Servo [here](https://wiki.seeedstudio.com/Grove-Servo/)
