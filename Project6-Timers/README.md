@@ -32,7 +32,7 @@ add a screen shot from the logic analyzer below:
 ![alt text](image-2.png)
 
 - change the LED time ON from 5 seconds to 30 ms, measure in the scope the time the LED is ON. is it 30 ms? Why or why not?
-answer here: Seems to be slightly under 30 ms.
+answer here: Seems to be slightly under 30 ms - this is apparently a known bug (feature?) with the `stop()` function of `MsTimer2`. When you don't use `stop()`, it IS 30 ms.
 
 paste a screen shot from the scope below:
 
