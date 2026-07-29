@@ -2,7 +2,6 @@ import sys
 import time
 import threading
 
-
 from telemetrix import telemetrix
 
 board = telemetrix.Telemetrix()
@@ -10,12 +9,20 @@ board = telemetrix.Telemetrix()
 LED_PIN = 4
 BUTTON_PIN = 6
 
+board.set_pin_mode_digital_output(LED_PIN)
+board.set_pin_mode_digital_input(BUTTON_PIN)
+
 # Callback data indices for telemetrix digital reporting
 CB_PIN_MODE = 0
 CB_PIN = 1
 CB_VALUE = 2
 CB_TIME = 3
 
+def led_off(pin):
+    board.digital_write(pin, 0)  # Turn off the LED
+    print("LED off after 5 seconds")
+
+timer = threading.Timer(5.0, led_off, args=[LED_PIN])
 
 def button_callback(data):
     """Handle button state changes and update the LED."""
@@ -28,7 +35,7 @@ def button_callback(data):
     if value == 1:
         board.digital_write(LED_PIN, 1)
         print("Button pressed: LED on")
-        # state != state
+        timer.start()
     else:
         board.digital_write(LED_PIN, 0)
         print("Button released: LED off")
