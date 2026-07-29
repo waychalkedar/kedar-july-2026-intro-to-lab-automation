@@ -5,6 +5,7 @@ const int BUTTON_PIN = 6;
 const int INTERRUPT_PIN = 3;
 int valueRead;
 int onTime;
+byte state;
 
 void setup() {
   Serial.begin(9600);
@@ -21,6 +22,7 @@ void button() {
     MsTimer2::start();               
     // turning on the LED
     digitalWrite(LED_PIN, HIGH);
+    state = 1;
   }
 }
 
@@ -33,8 +35,8 @@ void turn_off() {
 
 void loop() {
   // polls repeatedly to check Serial
-  if (Serial.available()) { 
-    valueRead = Serial.parseInt();
+  while (!Serial.available()) { 
+    valueRead = Serial.readString().toInt();
     if (valueRead != 0) {
       // storing the read value in onTime
       // doing it this way stores the last inputted value and keeps the button responsive
