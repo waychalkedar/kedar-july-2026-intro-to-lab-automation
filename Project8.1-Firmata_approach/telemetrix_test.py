@@ -1,3 +1,5 @@
+# written with Copilot
+
 import sys
 import time
 
