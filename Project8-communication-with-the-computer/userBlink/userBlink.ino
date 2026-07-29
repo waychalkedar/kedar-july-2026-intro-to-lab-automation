@@ -3,6 +3,7 @@
 const int LED_PIN = 4;
 const int BUTTON_PIN = 6;
 const int INTERRUPT_PIN = 3;
+int valueRead;
 int onTime;
 
 void setup() {
@@ -14,7 +15,7 @@ void setup() {
 
 void button() {
   if (digitalRead(BUTTON_PIN)) {
-    MsTimer2::set(onTime, turn_off);
+    MsTimer2::set(onTime + 1, turn_off); // bug seen previously where the stop() would end early
     MsTimer2::start();               
     digitalWrite(LED_PIN, HIGH);
   }
@@ -28,17 +29,10 @@ void turn_off() {
 void loop() {
   // polls repeatedly to check Serial
   if (Serial.available()) { 
-    onTime = Serial.parseInt();
-    if (onTime == 0) {
-    Serial.println("Received 0");
-    } 
-    else {
+    valueRead = Serial.parseInt();
+    if (valueRead != 0) {
+      onTime = valueRead; // doing it this way stores the last inputted value and leaves the button responsive
       Serial.println("Received " + String(onTime));
-      Serial.println("Waiting 5 s for a button press...");
-      delay(5000);
-    }
+    } 
   }
-  // else {
-  //   Serial.println("No input");
-  // }
 }
