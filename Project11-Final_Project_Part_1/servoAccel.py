@@ -3,9 +3,9 @@ import csv
 import sys
 import time
 
-start_time = time.time()
-
 CSV_FILE = 'log.csv'
+
+start_time = time.perf_counter()
 
 # open the CSV file in write mode and write the header row
 with open(CSV_FILE, mode="w", newline="", encoding="utf-8") as f:
@@ -26,12 +26,19 @@ def log_to_csv(angle, buzzer):
 def extract(data):
     """Reads from the Arduino and returns the angle and buzzer values."""
     if not data:
-        return
+        return None
+
     data = data.rstrip(b'\r\n')
-    parts = data.split(b' ')
-    angle = parts[0][0]
-    buzzer = bool(parts[1][0])
-    return [angle, buzzer]
+    parts = data.split()  # split on whitespace, ignores extra spaces
+    if len(parts) < 2:
+        return None
+
+    try:
+        angle = parts[0][0]
+        buzzer = bool(parts[1][0])
+    except IndexError:
+        return None
+    return angle, buzzer
 
 # communicate with the Arduino over the serial port
 arduino = serial.Serial('COM4', 9600, timeout=1)
@@ -39,8 +46,10 @@ arduino = serial.Serial('COM4', 9600, timeout=1)
 try:
     while True:
         data = arduino.readline()
-        [angle, buzzer] = extract(data)
-
+        result = extract(data)
+        if result is None:
+            continue
+        angle, buzzer = result
         log_to_csv(angle, buzzer)
 except KeyboardInterrupt:
     pass
