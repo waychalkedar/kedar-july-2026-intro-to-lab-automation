@@ -5,9 +5,13 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
+
   int angle = 179;
   bool buzzer = true;
-  Serial.write(angle);
-  Serial.write('A');
-  Serial.write(buzzer);
+  // Serial.write(angle);
+  // Serial.write('A');
+  // Serial.write(buzzer);
+  // Serial.write(-1);
+  byte data[5] = {angle, ' ', buzzer, '\n'};
+  Serial.write(data, 5);
 }

@@ -38,15 +38,19 @@ void loop() {
     Oled.println("NA");
     Oled.println("BUZZER:");
     Oled.print("ON ");
+    byte data[4] = {-1, ' ', true, '\n'};
+    Serial.write(data, 4);
   }
   else {
     noTone(BUZZER);
     angle = constrain((int)mappedAngle, 0, 180);
-    // servo1.write(angle);
+    servo1.write(angle);
     Oled.println("Angle: ");
     Oled.println(String(angle));
     Oled.println("BUZZER:");
     Oled.print("OFF");
+    byte data[4] = {angle, ' ', false, '\n'};
+    Serial.write(data, 4);
   }
   Oled.refreshDisplay();
   delay(100);

@@ -23,27 +23,35 @@ def log_to_csv(angle, buzzer):
         # Format elapsed time to 4 decimal places
         writer.writerow([f"{elapsed:.4f}", angle, buzzer])
 
-def serial_read(arduino):
-    """Reads a line from the Arduino and returns the angle and buzzer values."""
-    inByte = arduino.readline()
-    if inByte == 'A':
-        arduino.clear_input_buffer()
-    data = arduino.readline().decode("utf-8").strip()
-    if data:
-        try:
-            angle_str, buzzer_str = data.split(",")
-            angle = int(angle_str)
-            buzzer = int(buzzer_str)
-            return angle, buzzer
-        except ValueError:
-            print(f"Invalid data received: {data}")
-            return None, None
-    return None, None
+def extract(data):
+    """Reads from the Arduino and returns the angle and buzzer values."""
+    if not data:
+        return
+    data = data.rstrip(b'\r\n')
+    parts = data.split(b' ')
+    angle = parts[0][0]
+    buzzer = bool(parts[1][0])
+    return [angle, buzzer]
 
 # communicate with the Arduino over the serial port
 arduino = serial.Serial('COM4', 9600, timeout=1)
 
-data = arduino.readline()
+try:
+    while True:
+        data = arduino.readline()
+        [angle, buzzer] = extract(data)
+
+        log_to_csv(angle, buzzer)
+except KeyboardInterrupt:
+    pass
+except Exception:
+    import traceback
+    traceback.print_exc()
+finally:
+    arduino.close()
+    sys.exit()
+
+
 
 
 
