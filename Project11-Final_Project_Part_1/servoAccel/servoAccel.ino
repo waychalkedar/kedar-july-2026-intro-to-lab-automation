@@ -19,25 +19,35 @@ void setup() {
   servo1.attach(SERVO_PIN);
   pinMode(BUZZER, OUTPUT);
   while(!Serial);
-  
+  Oled.begin();
+  Oled.setFlipMode(true);
   Accelerometer.begin();
 }
  
 void loop() {
   // Read accelerometer axis readings
   valueX = Accelerometer.readX();
+  Oled.setFont(u8x8_font_chroma48medium8_r); 
+  Oled.setCursor(0, 33);    // Set the Coordinates 
   // Map the raw X value to a servo angle.
   // Adjust min/max values for your sensor orientation.
   float mappedAngle = mapFloat(valueX, -1.0, 1.0, 0.0, 180.0);
-  // angle = constrain((int)mappedAngle, 0, 180);
-  // servo1.write(angle);
   if ((valueX < -0.9) | (valueX > 0.9)){
     tone(BUZZER, 440);
+    Oled.println("Angle: ");
+    Oled.println("NA");
+    Oled.println("BUZZER:");
+    Oled.print("ON ");
   }
   else {
     noTone(BUZZER);
     angle = constrain((int)mappedAngle, 0, 180);
     servo1.write(angle);
+    Oled.println("Angle: ");
+    Oled.println(String(angle));
+    Oled.println("BUZZER:");
+    Oled.print("OFF");
   }
+  Oled.refreshDisplay();
   delay(100);
 }
